@@ -10,7 +10,7 @@ class Quote < ApplicationRecord
   
     has_one_attached :image
   
-    validates :name, presence: true, length: { minimum: 2, maximum: 40 }
+    validates :author, presence: true, length: { minimum: 2, maximum: 40 }
   
     validates :description, presence: true, length: { minimum: 6, maximum: 50_000 }
   

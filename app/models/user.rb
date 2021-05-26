@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+
   has_many :quotes, dependent: :destroy
   has_many :favorite_quotes, dependent: :destroy
   has_many :favorites, through: :favorite_quotes, source: :quote, dependent: :destroy
