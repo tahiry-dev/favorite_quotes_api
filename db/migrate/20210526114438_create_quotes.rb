@@ -6,6 +6,7 @@ class CreateQuotes < ActiveRecord::Migration[6.0]
       t.text :description
       t.string :ratings
       
+      t.timestamps
     end
   end
 end

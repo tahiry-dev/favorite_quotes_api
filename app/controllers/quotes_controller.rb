@@ -4,7 +4,7 @@ class QuotesController < ApplicationController
   
     # GET /quotes
     def index
-      @quotes = quote.all.order('created_at DESC')
+      @quotes = Quote.all.order('created_at DESC')
   
       render json: serialize_quotes(@quotes)
     end
@@ -16,7 +16,7 @@ class QuotesController < ApplicationController
   
     # POST /quotes
     def create
-      @quote = quote.new(quote_params)
+      @quote = Quote.new(quote_params)
   
       if @quote.save
         render json: serialize_quote(@quote), status: :created, location: @quote
@@ -45,11 +45,11 @@ class QuotesController < ApplicationController
       type = params[:type]
       if type == 'favorite'
         current_api_user.favorites << @quote unless current_api_user.favorites.include? @quote
-        render json: { success: true, message: "You favorited #{@quote.name}" }
+        render json: { success: true, message: "You favorited #{@quote.author}" }
   
       elsif type == 'unfavorite'
         current_api_user.favorites.delete(@quote) if current_api_user.favorites.include? @quote
-        render json: { success: true, message: "Unfavorited #{@quote.name}" }
+        render json: { success: true, message: "Unfavorited #{@quote.author}" }
   
       else
         render json: { success: false, message: 'Provide a type (favorite/unfavorite)' }, status: :unprocessable_entity
@@ -59,11 +59,11 @@ class QuotesController < ApplicationController
     private
   
     def set_quote
-      @quote = quote.find(params[:id])
+      @quote = Quote.find(params[:id])
     end
   
     def quote_params
-      params.permit(:user_id, :name, :description, :price, :ratings, :usedFor, :image)
+      params.permit(:user_id, :author, :description, :price, :ratings, :usedFor, :image)
     end
   
     def serialize_quotes(quotes)
@@ -73,7 +73,7 @@ class QuotesController < ApplicationController
     def serialize_quote(quote)
       {
         id: quote.id,
-        name: quote.name,
+        author: quote.author,
         description: quote.description,
         price: quote.price,
         usedFor: quote.usedFor,
@@ -82,7 +82,7 @@ class QuotesController < ApplicationController
         created_at: quote.created_at,
         updated_at: quote.updated_at,
         user_id: quote.user_id,
-        user_name: quote.user.name,
+        user_author: quote.user.author,
         favorited_by: quote.favorited_by
       }
     end
