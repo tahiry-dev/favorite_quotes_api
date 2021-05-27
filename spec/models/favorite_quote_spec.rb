@@ -13,7 +13,7 @@ RSpec.describe FavoriteQuote, type: :model do
     it { is_expected.to validate_presence_of(:quote_id) }
   end
 
-  describe 'scopes' do  
+  describe 'scopes' do
     before :each do
       @user = FactoryBot.create(:user)
 

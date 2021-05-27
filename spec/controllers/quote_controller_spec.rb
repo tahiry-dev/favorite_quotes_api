@@ -23,7 +23,6 @@ RSpec.describe '/Quotes', type: :request do
 
       expect(JSON.parse(response.body).length).to eq(0)
     end
-
   end
 
   describe 'POST /Quotes' do
