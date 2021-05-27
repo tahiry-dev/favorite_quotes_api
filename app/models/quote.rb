@@ -14,10 +14,7 @@ class Quote < ApplicationRecord
   
     validates :description, presence: true, length: { minimum: 6, maximum: 50_000 }
   
-    validates :price, presence: true, length: { maximum: 12 }
-  
-    validates :usedFor, presence: true, length: { minimum: 2, maximum: 60 }
-  
+   
     # def set_host
     #   Rails.env.production? ? 'https://handmades-rails-api-backend.herokuapp.com' : 'http://localhost:3000'
     # end

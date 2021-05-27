@@ -75,8 +75,6 @@ class QuotesController < ApplicationController
         id: quote.id,
         author: quote.author,
         description: quote.description,
-        price: quote.price,
-        usedFor: quote.usedFor,
         ratings: quote.ratings,
         image_url: quote.image_url,
         created_at: quote.created_at,
