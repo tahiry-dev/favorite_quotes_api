@@ -14,7 +14,7 @@ class Quote < ApplicationRecord
   validates :description, presence: true, length: { minimum: 6, maximum: 50_000 }
 
   def set_host
-    Rails.env.production? ? 'https://your-favorite-quotes-api.herokuapp.com' : 'http://localhost:3000'
+    Rails.env.production? ? 'https://handmades-react-redux-toolkit.herokuapp.com/' : 'http://localhost:3000'
   end
 
   def image_url
