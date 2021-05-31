@@ -64,7 +64,7 @@ class QuotesController < ApplicationController
   end
 
   def quote_params
-    params.permit(:user_id, :author, :description, :price, :ratings, :usedFor, :image)
+    params.permit(:user_id, :author, :description, :image)
   end
 
   def serialize_quotes(quotes)
@@ -81,7 +81,7 @@ class QuotesController < ApplicationController
       created_at: quote.created_at,
       updated_at: quote.updated_at,
       user_id: quote.user_id,
-      user_author: quote.user.author,
+      user_name: quote.user.name,
       favorited_by: quote.favorited_by
     }
   end
