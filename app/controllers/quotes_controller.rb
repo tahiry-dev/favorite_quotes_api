@@ -2,19 +2,16 @@ class QuotesController < ApplicationController
   before_action :set_quote, only: %i[show update destroy favorite]
   before_action :authenticate_api_user!, only: %i[update favorite destroy]
 
-  # GET /quotes
   def index
     @quotes = Quote.all.order('created_at DESC')
 
     render json: serialize_quotes(@quotes)
   end
 
-  # GET /quotes/1
   def show
     render json: serialize_quote(@quote)
   end
 
-  # POST /quotes
   def create
     @quote = Quote.new(quote_params)
 
@@ -25,7 +22,6 @@ class QuotesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /quotes/1
   def update
     if @quote.update(quote_params)
       render json: serialize_quote(@quote)
@@ -34,13 +30,11 @@ class QuotesController < ApplicationController
     end
   end
 
-  # DELETE /quotes/1
   def destroy
     @quote.destroy
     render json: serialize_quote(@quote)
   end
 
-  # POST /quotes/:id/favorite
   def favorite
     type = params[:type]
     case type
