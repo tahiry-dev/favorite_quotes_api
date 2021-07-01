@@ -25,8 +25,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
-gem 'devise_token_auth'
-
 gem 'figaro'
 
 gem 'aws-sdk-s3', require: false
@@ -34,6 +32,9 @@ gem 'aws-sdk-s3', require: false
 gem 'image_processing', '~> 1.2'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
+
+# jwt gem for authentication through headers
+gem 'jwt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

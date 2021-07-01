@@ -1,6 +1,6 @@
 class QuotesController < ApplicationController
   before_action :set_quote, only: %i[show update destroy favorite]
-  before_action :authenticate_api_user!, only: %i[update favorite destroy]
+  before_action :authenticate_user
 
   def index
     @quotes = Quote.all.order('created_at DESC')
@@ -71,12 +71,12 @@ class QuotesController < ApplicationController
       author: quote.author,
       description: quote.description,
       ratings: quote.ratings,
-      image_url: quote.image_url,
+      # image_url: quote.image_url ,
       created_at: quote.created_at,
       updated_at: quote.updated_at,
       user_id: quote.user_id,
-      user_name: quote.user.name,
-      favorited_by: quote.favorited_by
+      user_name: quote.user.name
+      # favorited_by: quote.favorited_by
     }
   end
 end

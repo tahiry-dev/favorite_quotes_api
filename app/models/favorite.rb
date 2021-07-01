@@ -1,4 +1,4 @@
-class FavoriteQuote < ApplicationRecord
+class Favorite < ApplicationRecord
   validates_presence_of :user_id
   validates_presence_of :quote_id
 

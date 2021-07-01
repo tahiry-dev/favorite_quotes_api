@@ -3,9 +3,9 @@ class Quote < ApplicationRecord
 
   belongs_to :user
 
-  has_many :favorite_quotes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
-  has_many :favorited_by, through: :favorite_quotes, source: :user, dependent: :destroy
+  has_many :favorited_by, through: :favorites, source: :user, dependent: :destroy
 
   has_one_attached :image
 
