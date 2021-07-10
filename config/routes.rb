@@ -1,7 +1,5 @@
 
 Rails.application.routes.draw do
-  root 'quotes#index'
-  
   namespace :api do
     scope :v1 do
       post '/login', to: 'users#login'

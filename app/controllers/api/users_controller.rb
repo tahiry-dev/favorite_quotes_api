@@ -11,6 +11,8 @@ class Api::UsersController < ApplicationController
       exp = Time.now.to_i + 4 * 3600
       payload = {
         user_id: user.id,
+        name: user.name,
+        nickname: user.nickname,
         exp: exp
       }
       token = set_auth(payload)
@@ -32,6 +34,8 @@ class Api::UsersController < ApplicationController
       exp = Time.now.to_i + 4 * 3600
       payload = {
         user_id: user.id,
+        name: user.name,
+        nickname: user.nickname,
         exp: exp
       }
       token = set_auth(payload)
