@@ -1,5 +1,4 @@
 class Api::UsersController < ApplicationController
-  
   def login
     user = User.find_by(email: params[:email])
     unless user
@@ -14,12 +13,10 @@ class Api::UsersController < ApplicationController
         nickname: user.nickname,
         exp: exp
       }
-      token = set_auth(payload)
+      token = the_auth(payload)
       render json: { token: token }
-      nil
     else
       render json: { msg: 'invalid credentails ' }, status: 406
-      nil
     end
   end
 
@@ -34,7 +31,7 @@ class Api::UsersController < ApplicationController
         nickname: user.nickname,
         exp: exp
       }
-      token = set_auth(payload)
+      token = the_auth(payload)
 
       render json: { token: token }
     else
@@ -48,7 +45,7 @@ class Api::UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :name, :nickname, :image)
   end
 
-  def set_auth(payload)
+  def the_auth(payload)
     secret_word = 'jwt_rock'
 
     begin

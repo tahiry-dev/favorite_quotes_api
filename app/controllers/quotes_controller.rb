@@ -71,7 +71,7 @@ class QuotesController < ApplicationController
       author: quote.author,
       description: quote.description,
       ratings: quote.ratings,
-      image_url: quote.image_url ,
+      image_url: quote.image_url,
       created_at: quote.created_at,
       updated_at: quote.updated_at,
       user_id: quote.user_id,

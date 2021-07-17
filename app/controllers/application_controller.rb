@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
   attr_reader :current_user
 
+  # rubocop:disable Metrics/MethodLength
   def authenticate_user
     secret_word = 'jwt_rock'
     begin
@@ -26,3 +27,4 @@ class ApplicationController < ActionController::API
     end
   end
 end
+# rubocop:enable Metrics/MethodLength
