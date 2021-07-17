@@ -1,6 +1,6 @@
 class QuotesController < ApplicationController
   before_action :set_quote, only: %i[show update destroy favorite]
-  before_action :authenticate_user, only: %i[update destroy favorite]
+  before_action :authenticate_user, only: %i[show update favorite destroy]
 
   def index
     @quotes = Quote.all.order('created_at DESC')
@@ -39,11 +39,11 @@ class QuotesController < ApplicationController
     type = params[:type]
     case type
     when 'favorite'
-      current_api_user.favorites << @quote unless current_api_user.favorites.include? @quote
+      current_user.favorites << @quote unless current_user.favorites.include? @quote
       render json: { success: true, message: "You favorited #{@quote.author}" }
 
     when 'unfavorite'
-      current_api_user.favorites.delete(@quote) if current_api_user.favorites.include? @quote
+      current_user.favorites.delete(@quote) if current_user.favorites.include? @quote
       render json: { success: true, message: "Unfavorited #{@quote.author}" }
 
     else

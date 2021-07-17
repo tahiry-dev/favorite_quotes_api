@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::API
+  attr_reader :current_user
+
   def authenticate_user
     secret_word = 'jwt_rock'
-
     begin
       token = request.headers[:token]
       p secret_word
@@ -13,6 +14,7 @@ class ApplicationController < ActionController::API
         return false
       end
       user = User.find_by(id: user_id)
+      @current_user = user
       unless user
         render json: { msg: 'invalid credentails' }
         return false

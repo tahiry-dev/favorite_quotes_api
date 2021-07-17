@@ -1,6 +1,5 @@
 class Api::UsersController < ApplicationController
-  # login method takes in email and password, and returns a token when sucess
-
+  
   def login
     user = User.find_by(email: params[:email])
     unless user
@@ -23,9 +22,6 @@ class Api::UsersController < ApplicationController
       nil
     end
   end
-
-  # signup method returns jwt token when successfull
-  # which will be included in every request
 
   def signup
     p params
@@ -53,7 +49,6 @@ class Api::UsersController < ApplicationController
   end
 
   def set_auth(payload)
-    # you can set your encryption code here
     secret_word = 'jwt_rock'
 
     begin
