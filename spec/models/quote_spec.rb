@@ -10,7 +10,7 @@ RSpec.describe Quote, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:author) }
     it { is_expected.to validate_presence_of(:description) }
-   
+
     it do
       should validate_length_of(:author).is_at_least(2).is_at_most(40)
     end
