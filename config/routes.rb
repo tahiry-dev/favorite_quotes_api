@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :quotes do
-    put :favorite, on: :member
-  end
+  resources :quotes 
+  
+  put '/:id/favorite', to: 'favorites#favorite'
 end

@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::API
   attr_reader :current_user
 
+  def set_quote
+    @quote = Quote.find(params[:id])
+  end
+
   # rubocop:disable Metrics/MethodLength
   def authenticate_user
     secret_word = 'jwt_rock'

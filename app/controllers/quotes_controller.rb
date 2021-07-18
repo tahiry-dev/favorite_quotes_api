@@ -1,6 +1,6 @@
 class QuotesController < ApplicationController
-  before_action :set_quote, only: %i[show update destroy favorite]
-  before_action :authenticate_user, only: %i[show update favorite destroy]
+  before_action :set_quote, only: %i[show update destroy]
+  before_action :authenticate_user, only: %i[show update destroy]
 
   def index
     @quotes = Quote.all.order('created_at DESC')
@@ -35,27 +35,7 @@ class QuotesController < ApplicationController
     render json: serialize_quote(@quote)
   end
 
-  def favorite
-    type = params[:type]
-    case type
-    when 'favorite'
-      current_user.favorites << @quote unless current_user.favorites.include? @quote
-      render json: { success: true, message: "You favorited #{@quote.author}" }
-
-    when 'unfavorite'
-      current_user.favorites.delete(@quote) if current_user.favorites.include? @quote
-      render json: { success: true, message: "Unfavorited #{@quote.author}" }
-
-    else
-      render json: { success: false, message: 'Provide a type (favorite/unfavorite)' }, status: :unprocessable_entity
-    end
-  end
-
   private
-
-  def set_quote
-    @quote = Quote.find(params[:id])
-  end
 
   def quote_params
     params.permit(:user_id, :author, :description, :image)
