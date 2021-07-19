@@ -1,6 +1,6 @@
 class QuotesController < ApplicationController
   before_action :set_quote, only: %i[show update destroy]
-  before_action :authenticate_user, only: %i[show update destroy]
+  before_action :authenticate_user, only: %i[update destroy]
 
   def index
     @quotes = Quote.all.order('created_at DESC')

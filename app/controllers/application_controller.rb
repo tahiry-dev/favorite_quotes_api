@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::API
   attr_reader :current_user
-
   def set_quote
     @quote = Quote.find(params[:id])
   end
