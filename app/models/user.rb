@@ -2,7 +2,6 @@ class User < ApplicationRecord
   has_many :quotes, dependent: :destroy
   has_many :favorite, dependent: :destroy
   has_many :favorites, through: :favorite, source: :quote, dependent: :destroy
-  has_one_attached :image
 
   validates :email, presence: true, length: { minimum: 6, maximum: 80 }, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true, length: { minimum: 6, maximum: 80 }

@@ -1,4 +1,6 @@
 class Quote < ApplicationRecord
+  include ImageUploader::Attachment(:image)
+
   include Rails.application.routes.url_helpers
 
   belongs_to :user
@@ -7,14 +9,12 @@ class Quote < ApplicationRecord
 
   has_many :favorited_by, through: :favorites, source: :user, dependent: :destroy
 
-  has_one_attached :image
-
   validates :author, presence: true, length: { minimum: 2, maximum: 40 }
 
   validates :description, presence: true, length: { minimum: 6, maximum: 50_000 }
 
   def set_host
-    Rails.env.production? ? 'https://your-favorite-quotes-api.herokuapp.com' : 'http://localhost:3000'
+    Rails.env.production? ? 'https://your-favorite-quotes-api.herokuapp.com' : 'http://localhost:5000'
   end
 
   def image_url
