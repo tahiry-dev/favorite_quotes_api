@@ -35,7 +35,7 @@
 
 - Ruby on Rails for the Backend API
 - devise_token_auth for the login functionality
-- Using AWS S3 with Active Storage for storing item images
+- Using cloudinary for storing item images
 
 ## Testing
 
