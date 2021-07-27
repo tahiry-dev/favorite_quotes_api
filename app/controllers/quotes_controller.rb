@@ -3,19 +3,21 @@ class QuotesController < ApplicationController
   before_action :authenticate_user, only: %i[update destroy]
 
   def index
-    @quotes = Quote.all.order('created_at DESC')
-    render json: serialize_quotes(@quotes)
+    @quotes = render json: Quote.all.order('created_at DESC')
+    # render json: serialize_quotes(@quotes)
   end
 
   def show
-    render json: serialize_quote(@quote)
+    render json: Quote.find(params[:id])
+    # render json: serialize_quote(@quote)
   end
 
   def create
     @quote = Quote.new(quote_params)
 
     if @quote.save
-      render json: serialize_quote(@quote), status: :created, location: @quote
+      # render json: serialize_quote(@quote), status: :created, location: @quote
+      render json: @quote
     else
       render json: @quote.errors.full_messages, status: :unprocessable_entity
     end
@@ -23,7 +25,8 @@ class QuotesController < ApplicationController
 
   def update
     if @quote.update(quote_params)
-      render json: serialize_quote(@quote)
+      # render json: serialize_quote(@quote)
+      render json: @quote
     else
       render json: @quote.errors.full_messages, status: :unprocessable_entity
     end
@@ -31,7 +34,8 @@ class QuotesController < ApplicationController
 
   def destroy
     @quote.destroy
-    render json: serialize_quote(@quote)
+    # render json: serialize_quote(@quote)
+    render json: @quote
   end
 
   private
