@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  def login
+  def update
     user = User.find_by(email: params[:email])
     unless user
       render json: { msg: 'invalid credentails ' }, status: 406
@@ -20,7 +20,7 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def signup
+  def create
     p params
     user = User.new(user_params)
     if user.save

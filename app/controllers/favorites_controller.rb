@@ -1,8 +1,8 @@
 class FavoritesController < ApplicationController
-  before_action :set_quote, only: :favorite
-  before_action :authenticate_user, only: :favorite
+  before_action :set_quote, only: :update
+  before_action :authenticate_user, only: :update
 
-  def favorite
+  def update
     type = params[:type]
     case type
     when 'favorite'
